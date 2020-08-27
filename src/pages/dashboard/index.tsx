@@ -30,7 +30,7 @@ export default function Main() {
       <ul>
         {coin.map(c => (
           <ListItem key={c.code}>
-            <Link to={`/coin/${c.name}`}>
+            <Link to={`/${c.code}/${c.name}`}>
               <img src={c.icon} alt={c.name} />
               {c.name}
             </Link>

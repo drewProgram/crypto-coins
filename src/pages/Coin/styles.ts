@@ -21,6 +21,7 @@ export const Header = styled.header`
     width: 20px;
     height: 20px;
     color: #fff;
+    margin-top:2px;
   }
 `;
 
