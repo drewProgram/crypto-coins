@@ -26,16 +26,11 @@ export default function Main() {
 
   return (
     <Container>
-      <p>Bem vindo!</p>
-      <h2>Moedas</h2>
+      <h1>Moedas</h1>
       <ul>
         {coin.map(c => (
           <ListItem key={c.code}>
-            <Link
-              to={`/coin/${encodeURIComponent(c.code)}/${encodeURIComponent(
-                c.name
-              )}`}
-            >
+            <Link to={`/coin/${c.name}`}>
               <img src={c.icon} alt={c.name} />
               {c.name}
             </Link>

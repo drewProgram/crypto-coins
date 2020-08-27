@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  margin-top: 30px;
+  left: 50%;
+  transform: translateX(50%);
+  margin-top: 40px;
+  height: 90vh;
   background-color: rgb(244, 149, 24);
   border-radius: 4px;
   padding: 10px;
+  width: 50%;
 
   ul {
     list-style: none;

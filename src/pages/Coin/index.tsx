@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
+import { FiArrowLeft } from 'react-icons/fi'
 import { formatPrice } from '../../util/coinFormat';
+
 import dataApi from '../../services/dataApi';
 
-import { Container, CoinInfo, InfoList } from './styles';
+import { Container, Header, InfoList } from './styles';
 
 interface CoinData {
-  ticker: string;
   high: string;
   low: string;
   last: string;
+  date: number;
 }
 
 const Coin: React.FC = () => {
@@ -20,10 +24,10 @@ const Coin: React.FC = () => {
       const response = await dataApi.get(`/eth/ticker`);
 
       const coinDataFormatted:CoinData = {
-        ...response.data.ticker,
-        highFormatted: formatPrice(response.data.ticker.high),
-        lowFormatted: formatPrice(response.data.ticker.low),
-        lastFormatted: formatPrice(response.data.ticker.last),
+        high: formatPrice(response.data.ticker.high),
+        low: formatPrice(response.data.ticker.low),
+        last: formatPrice(response.data.ticker.last),
+        date: response.data.ticker.date,
       };
       setCoinData(coinDataFormatted);
     }
@@ -31,20 +35,17 @@ const Coin: React.FC = () => {
   }, []);
   return (
     <Container>
-      <h2>Ethereum</h2>
-      <CoinInfo>
-        <p>Exibir:</p>
-        <select>
-          <option>Dados</option>
-          <option>Investimento</option>
-        </select>
-
+      <Header>
+        <Link to="/">
+          <FiArrowLeft />
+        </Link>
+        <h1>Ethereum</h1>
+      </Header>
         <InfoList>
           <li>Maior preço: {coinData.high}</li>
           <li>Menor preço: {coinData.low}</li>
           <li>Preço atual: {coinData.last}</li>
         </InfoList>
-      </CoinInfo>
     </Container>
   );
 }
